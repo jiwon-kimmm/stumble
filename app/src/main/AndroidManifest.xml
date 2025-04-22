@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -17,6 +18,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Stumble"
         tools:targetApi="31">
+        <meta-data
+            android:name="com.kakao.maps.APP_KEY"
+            android:value="f86e51ba8a6c71c95e91b86360a1c98b" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true">

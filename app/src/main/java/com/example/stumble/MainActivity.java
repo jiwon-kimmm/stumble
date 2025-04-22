@@ -31,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         registerPermissionCallback();
         requestPermissions();
+
+//        KakaoMapSdk.iniy
     }
 
     private void registerPermissionCallback() {
