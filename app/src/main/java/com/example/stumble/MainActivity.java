@@ -1,9 +1,10 @@
 package com.example.stumble;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.result.ActivityResultLauncher;
@@ -31,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
         registerPermissionCallback();
         requestPermissions();
+
+        ((Button)findViewById(R.id.SignUpLoginButton)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            }
+        });
+
     }
 
     private void registerPermissionCallback() {
