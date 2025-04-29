@@ -1,5 +1,6 @@
 package com.example.stumble;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.HandlerThread;
@@ -19,12 +20,15 @@ import com.example.stumble.data.dao.UserDao;
 import com.example.stumble.data.database.AppDatabase;
 import com.example.stumble.data.model.User;
 
+import java.util.Objects;
+
 public class LoginActivity extends AppCompatActivity {
 
     public String username;
     public String password;
 
     private Handler dbHandler;
+    private AppDatabase appDb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +46,7 @@ public class LoginActivity extends AppCompatActivity {
 
         dbHandler = new Handler(dbThread.getLooper());
 
-        AppDatabase appDb = Room.databaseBuilder(getApplicationContext(),
+        appDb = Room.databaseBuilder(getApplicationContext(),
                 AppDatabase.class, "app_db").build();
 
         ((Button)findViewById(R.id.signupButton)).setOnClickListener(new View.OnClickListener() {
@@ -54,6 +58,8 @@ public class LoginActivity extends AppCompatActivity {
 
                dbHandler.post(() -> {
                     User newUser = new User();
+                    newUser.username = username;
+                    newUser.password = password;
                     appDb.userDao().insertAll(newUser);
                });
            }
@@ -65,10 +71,30 @@ public class LoginActivity extends AppCompatActivity {
                 username = ((EditText)findViewById((R.id.UsernameText))).getText().toString();
                 password = ((EditText)findViewById((R.id.PasswordText))).getText().toString();
                 Log.d("UserInfo","Log in: " + username + ", " + password);
+
+                dbHandler.post(() -> {
+                    User currUser = appDb.userDao().findByUsername(username);
+                    if (Objects.equals(password, currUser.password)) {
+                        Log.d("UserInfo", "login success");
+                        startActivity(new Intent(LoginActivity.this, SignUpSurvey.class));
+                    } else {
+                        Log.d("UserInfo", "login fail");
+                    }
+                });
             }
         });
 
 
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (appDb != null) {
+            appDb.close();
+        }
     }
 
 
