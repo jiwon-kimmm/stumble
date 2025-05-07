@@ -73,4 +73,6 @@ dependencies {
 
     // optional - Paging 3 Integration
     implementation("androidx.room:room-paging:$room_version")
+
+    implementation("com.google.android.gms:play-services-maps:18.2.0")
 }

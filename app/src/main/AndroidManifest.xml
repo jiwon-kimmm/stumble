@@ -27,6 +27,10 @@
             android:name="com.kakao.maps.APP_KEY"
             android:value="f86e51ba8a6c71c95e91b86360a1c98b" />
 
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBP5b8GBIPKlRM7zVkvOkM42JnLE0izAeA" />
+
         <activity
             android:name=".MainActivity"
             android:exported="true" >
