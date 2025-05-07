@@ -14,4 +14,13 @@ public class User {
 
     @ColumnInfo(name = "password")
     public String password;
+
+    @ColumnInfo(name = "HomeLatitude")
+    public double homeLatitude;
+
+    @ColumnInfo(name = "HomeLongitude")
+    public double homeLongitude;
+
+    @ColumnInfo(name = "HomeLongitude")
+    public String password;
 }
