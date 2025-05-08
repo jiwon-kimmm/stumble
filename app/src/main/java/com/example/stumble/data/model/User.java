@@ -21,6 +21,6 @@ public class User {
     @ColumnInfo(name = "HomeLongitude")
     public double homeLongitude;
 
-    @ColumnInfo(name = "HomeLongitude")
-    public String password;
+//    @ColumnInfo(name = "HomeLongitude")
+//    public String password;
 }
